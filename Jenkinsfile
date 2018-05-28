@@ -19,5 +19,10 @@ pipeline {
 
       }
     }
+    stage('Deploy') {
+      steps {
+        sh 'docker rm -f sample-rest-service && docker run -d --name sample-rest-service -p 18080:8080 localhost:5000/com.example/sample-rest-service'
+      }
+    }
   }
 }
