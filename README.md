@@ -36,9 +36,9 @@ http://localhost:8080/configure
 "SonarQube servers"
 "Enable injection of SonarQube server configuration as build environment variables"
 "Add SonarQube"
-Name: SonarQube
+Name: SonarQube Server
 Server URL: http://sonarqube:9000
-Server authentication token: 
+Server authentication token: ***
 
 http://localhost:8080/blue
 
@@ -46,10 +46,10 @@ http://localhost:8080/blue
 
 "GitHub"
 
-Follow the instructions to create personal access token...
+Follow the instructions to create personal access token in GitHub.
 
 Select repository and "Create Pipeline"
 
-http://localhost:8080/swagger-ui.html
-http://localhost:8080/greeting
-http://localhost:8080/greeting?name=User
+http://localhost:18080/swagger-ui.html
+http://localhost:18080/greeting
+http://localhost:18080/greeting?name=User
