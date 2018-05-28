@@ -69,7 +69,6 @@ dependencies {
 checkstyle {
     toolVersion = "${checkstyleVersion}"
     config = resources.text.fromArchiveEntry(configurations.checkstyleConfig, 'google_checks.xml')
-    maxWarnings = 0
 }
 
 jacocoTestCoverageVerification {

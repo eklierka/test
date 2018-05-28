@@ -24,17 +24,13 @@ docker-compose exec jenkins cat /var/jenkins_home/secrets/initialAdminPassword
 
 "Create First Admin User"
 
-http://localhost:8080/credentials/store/system/domain/_/
-
-"Add Credentials"
-
-Kind "Secret text"
-Scope "Global"
-
 http://localhost:8080/pluginManager/available
 Filter: sonar
 "SonarQube Scanner"
+Filter: checkstyle
+"Checkstyle"
 "Install without restart"
+"Restart Jenkins when installation is complete and no jobs are running"
 
 http://localhost:8080/configure
 "SonarQube servers"

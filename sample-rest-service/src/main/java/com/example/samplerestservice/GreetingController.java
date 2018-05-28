@@ -28,9 +28,6 @@ public class GreetingController {
 
   private final AtomicLong counter = new AtomicLong();
 
-  /**
-   * Endpoint greeting users.
-   */
   @GetMapping("/greeting")
   public Greeting greeting(@RequestParam(value = "name", defaultValue = "World") String name) {
     String content = String.format(TEMPLATE, name);
