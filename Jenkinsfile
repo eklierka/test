@@ -4,11 +4,6 @@ pipeline {
     SONARQUBE_TOKEN = credentials('sonarqube-token')
   }
   stages {
-    stage('SCM') {
-      steps {
-          git url: 'https://github.com/evgeniy-khist/jenkins-example.git'
-      }
-    }
     stage('Build and Test') {
       steps {
         sh 'cd sample-rest-service && ./gradlew clean build dockerPush -i'
