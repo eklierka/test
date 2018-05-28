@@ -31,6 +31,18 @@ http://localhost:8080/credentials/store/system/domain/_/
 Kind "Secret text"
 Scope "Global"
 
+http://localhost:8080/pluginManager/available
+Filter: sonar
+"SonarQube Scanner"
+"Install without restart"
+
+http://localhost:8080/configure
+"SonarQube servers"
+"Enable injection of SonarQube server configuration as build environment variables"
+"Add SonarQube"
+Name: SonarQube
+Server URL: http://sonarqube:9000
+Server authentication token: 
 
 http://localhost:8080/blue
 

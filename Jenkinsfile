@@ -6,12 +6,16 @@ pipeline {
   stages {
     stage('Build and Test') {
       steps {
-        sh 'cd sample-rest-service && ./gradlew clean build dockerPush -i'
+        sh 'cd sample-rest-service && ./gradlew clean build dockerPush --info'
       }
     }
     stage('Static Analysis') {
       steps {
-        sh 'cd sample-rest-service && ./gradlew sonarqube -Dsonar.host.url=http://sonarqube:9000 -Dsonar.login=$SONARQUBE_TOKEN'
+        withSonarQubeEnv('SonarQube') {
+          // requires SonarQube Scanner for Gradle 2.1+
+          // It's important to add --info because of SONARJNKNS-281
+          sh 'cd sample-rest-service && ./gradlew --info sonarqube'
+        }
       }
     }
   }
