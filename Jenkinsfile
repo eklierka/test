@@ -6,7 +6,15 @@ pipeline {
         sh 'cd sample-rest-service && ./gradlew clean build dockerPush -i'
         junit '**/build/test-results/test/*.xml'
         script {
+          publishHTML(target: [allowMissing: false, alwaysLinkToLastBuild: false, keepAll: true, reportDir: 'sample-rest-service/build/reports/checkstyle', reportFiles: 'main.html', reportName: 'Checkstyle Report'])
+        }
+
+        script {
           publishHTML(target: [allowMissing: false, alwaysLinkToLastBuild: false, keepAll: true, reportDir: 'sample-rest-service/build/reports/tests/test', reportFiles: 'index.html', reportName: 'Test Report'])
+        }
+
+        script {
+          publishHTML(target: [allowMissing: false, alwaysLinkToLastBuild: false, keepAll: true, reportDir: 'sample-rest-service/build/reports/jacoco', reportFiles: 'index.html', reportName: 'Test Coverage Report'])
         }
 
       }
