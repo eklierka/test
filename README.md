@@ -16,8 +16,6 @@ Copy generated token
 
 "Finish this tutorial"
 
-42711829e7b383b7f44e975f453765c36dcace57
-
 http://localhost:8080
 
 docker-compose exec jenkins cat /var/jenkins_home/secrets/initialAdminPassword
