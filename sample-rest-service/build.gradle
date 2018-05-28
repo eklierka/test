@@ -87,7 +87,7 @@ check.dependsOn jacocoTestReport
 
 docker {
     dependsOn build
-    name "${project.group}/${bootJar.baseName}"
+    name "localhost:5000/${project.group}/${bootJar.baseName}"
     files bootJar.archivePath
     buildArgs(['JAR_FILE': "${bootJar.archiveName}"])
 }

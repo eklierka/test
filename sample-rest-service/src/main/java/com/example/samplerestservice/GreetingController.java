@@ -43,7 +43,7 @@ public class GreetingController {
     if (name.equals("World")) {
       System.out.println("Name param is not set");
     }
-    if (!name.equals("World")) {
+    if (name.equals("")) {
       // todo
     }
   }
