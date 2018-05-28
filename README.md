@@ -24,6 +24,14 @@ docker-compose exec jenkins cat /var/jenkins_home/secrets/initialAdminPassword
 
 "Create First Admin User"
 
+http://localhost:8080/credentials/store/system/domain/_/
+
+"Add Credentials"
+
+Kind "Secret text"
+Scope "Global"
+
+
 http://localhost:8080/blue
 
 "Create a new Pipeline"
