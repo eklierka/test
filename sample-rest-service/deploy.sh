@@ -22,4 +22,4 @@ echo "Running new Docker container $container_name from image $image_name"
 docker run -d --name $container_name -p 18080:8080 $image_name
 
 echo "Waiting for the application to start"
-grep -q "Started SampleRestServiceApplication" <(docker logs -f container_name)
+grep -q "Started SampleRestServiceApplication" <(docker logs -f $container_name)
