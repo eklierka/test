@@ -27,19 +27,19 @@ public class SampleRestServiceTestsApplicationTests {
   }
 
   @Test
-  public void shouldReturnDefaultMessage() throws Exception {
+  public void shouldReturnDefaultMessage() {
     String content = given()
         .spec(spec)
         .when()
         .get("/greeting")
         .then()
         .statusCode(200)
-        .extract().body().jsonPath().getString("$.content");
+        .extract().path("content");
     assertThat(content, is("Hello, World!"));
   }
 
   @Test
-  public void shouldReturnMessageWithName() throws Exception {
+  public void shouldReturnMessageWithName() {
     String content = given()
         .spec(spec)
         .param("name", "User")
@@ -47,7 +47,7 @@ public class SampleRestServiceTestsApplicationTests {
         .get("/greeting")
         .then()
         .statusCode(200)
-        .extract().body().jsonPath().getString("$.content");
+        .extract().path("content");
     assertThat(content, is("Hello, User!"));
   }
 }
