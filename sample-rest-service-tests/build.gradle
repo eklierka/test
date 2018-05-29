@@ -1,0 +1,28 @@
+buildscript {
+    ext {
+        restAssuredVersion = '3.1.0'
+    }
+    repositories {
+        mavenCentral()
+    }
+}
+
+apply plugin: 'java'
+
+group = 'com.example'
+version = '1.0.0-SNAPSHOT'
+sourceCompatibility = 1.8
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    testCompile('junit:junit:4.12')
+    testCompile("io.rest-assured:rest-assured:${restAssuredVersion}")
+    testCompile("io.rest-assured:json-path:${restAssuredVersion}")
+}
+
+test {
+    systemProperties = System.properties
+}

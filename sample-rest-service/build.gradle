@@ -19,6 +19,7 @@ buildscript {
         springBootVersion = '2.0.2.RELEASE'
         springFoxVersion = '2.7.0'
         checkstyleVersion = '8.10.1'
+        dockerRegistry = 'localhost:5000'
     }
     repositories {
         maven {
@@ -34,7 +35,6 @@ buildscript {
 }
 
 apply plugin: 'java'
-apply plugin: 'eclipse'
 apply plugin: 'org.springframework.boot'
 apply plugin: 'io.spring.dependency-management'
 apply plugin: 'checkstyle'
@@ -86,7 +86,7 @@ check.dependsOn jacocoTestReport
 
 docker {
     dependsOn build
-    name "localhost:5000/${project.group}/${bootJar.baseName}"
+    name "${dockerRegistry}/${project.group}/${bootJar.baseName}:${project.version}"
     files bootJar.archivePath
     buildArgs(['JAR_FILE': "${bootJar.archiveName}"])
 }
