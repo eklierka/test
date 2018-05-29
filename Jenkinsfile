@@ -33,7 +33,7 @@ pipeline {
     }
     stage('Test REST API') {
       steps {
-        sh 'cd sample-rest-service-tests && ./gradlew cleanTest test -i -DsampleRestService.baseUri="http://$(ip route show | grep default | cut -d \\  -f 3):18080'
+        sh 'cd sample-rest-service-tests && ./gradlew cleanTest test -i -DsampleRestService.baseUri="http://$(ip route show | grep default | cut -d " " -f 3):18080"'
       }
     }
   }
