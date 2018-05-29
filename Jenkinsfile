@@ -2,10 +2,13 @@ pipeline {
   agent any
   stages {
     stage('Build and Test') {
-      environment {
-        TEST = 'credentials(\'my-prefined-secret-text\')'
-      }
       steps {
+        script {
+          withCredentials([usernamePassword(credentialsId: 'docker-registry', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]) {
+            sh 'docker login -u $USERNAME -p $PASSWORD localhost:5000'
+          }
+        }
+
         script {
           withSonarQubeEnv('SonarQube Server') { sh 'cd sample-rest-service && ./gradlew clean build dockerPush sonar -i'  }
         }
