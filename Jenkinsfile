@@ -21,12 +21,16 @@ pipeline {
           waitForQualityGate true
         }
 
+        script {
+          env.GRADLE_PROJECT_VERSION = sh(script: 'cd sample-rest-service && ./gradlew properties -q | grep version | cut -d " " -f 2', returnStdout: true).trim()
+        }
+
       }
     }
     stage('Deploy') {
       steps {
         timeout(time: 5, unit: 'MINUTES') {
-          sh './sample-rest-service/deploy.sh'
+          sh './sample-rest-service/deploy.sh $GRADLE_PROJECT_VERSION'
         }
 
       }
