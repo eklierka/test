@@ -22,7 +22,7 @@ pipeline {
         }
 
         script {
-          env.GRADLE_PROJECT_VERSION = sh(script: 'cd sample-rest-service && ./gradlew properties -q | grep version | cut -d " " -f 2', returnStdout: true).trim()
+          env.SERVICE_VERSION = sh(script: 'cd sample-rest-service && ./gradlew properties -q | grep version | cut -d " " -f 2', returnStdout: true).trim()
         }
 
       }
@@ -30,14 +30,22 @@ pipeline {
     stage('Deploy') {
       steps {
         timeout(time: 5, unit: 'MINUTES') {
-          sh './sample-rest-service/deploy.sh $GRADLE_PROJECT_VERSION'
+          sh './sample-rest-service/deploy.sh $SERVICE_VERSION'
+        }
+
+        script {
+          env.SERVICE_HOST = sh(script: 'ip route show | grep default | cut -d " " -f 3', returnStdout: true)
+        }
+
+        script {
+          env.SERVICE_PORT = sh(script: 'docker port ci-sample-rest-service | grep 8080/tcp | cut -d ":" -f 2', returnStdout: true).trim()
         }
 
       }
     }
     stage('Test REST API') {
       steps {
-        sh 'cd sample-rest-service-tests && ./gradlew cleanTest test -i -DsampleRestService.baseUri="http://$(ip route show | grep default | cut -d " " -f 3):18080"'
+        sh 'cd sample-rest-service-tests && ./gradlew cleanTest test -i -DsampleRestService.baseUri="http://$SERVICE_HOST:SERVICE_PORT"'
       }
     }
   }
