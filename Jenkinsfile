@@ -21,10 +21,7 @@ pipeline {
     }
     stage('Deploy') {
       steps {
-        sh 'docker rm -f ci-sample-rest-service || true'
-        sh 'docker pull localhost:5000/com.example/sample-rest-service'
-        sh 'docker run -d --name ci-sample-rest-service -p 18080:8080 localhost:5000/com.example/sample-rest-service'
-        sh 'timeout 180 grep -q "Started SampleRestServiceApplication" <(docker logs -f ci-sample-rest-service)'
+        sh './sample-rest-service/deploy.sh'
       }
     }
     stage('Test REST API') {
