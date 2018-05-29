@@ -45,7 +45,7 @@ pipeline {
     }
     stage('Test REST API') {
       steps {
-        sh 'cd sample-rest-service-tests && ./gradlew cleanTest test -i -DsampleRestService.baseUri="http://$SERVICE_HOST:SERVICE_PORT"'
+        sh 'cd sample-rest-service-tests && ./gradlew cleanTest test -i -DsampleRestService.baseUri="http://$SERVICE_HOST:$SERVICE_PORT"'
       }
     }
   }
