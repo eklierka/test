@@ -34,7 +34,7 @@ pipeline {
         }
 
         script {
-          env.SERVICE_HOST = sh(script: 'ip route show | grep default | cut -d " " -f 3', returnStdout: true)
+          env.SERVICE_HOST = sh(script: 'ip route show | grep default | cut -d " " -f 3', returnStdout: true).trim()
         }
 
         script {
