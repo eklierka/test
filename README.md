@@ -14,7 +14,13 @@ http://localhost:9000
 
 Copy generated token 
 
+"Continue"
+
 "Finish this tutorial"
+
+http://localhost:9000/admin/settings?category=webhooks
+
+URL: "http://localhost:8080/sonarqube-webhook/"
 
 http://localhost:8080
 
