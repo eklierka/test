@@ -5,6 +5,8 @@ pipeline {
       steps {
         script {
           withSonarQubeEnv('SonarQube Server') { sh 'cd sample-rest-service && ./gradlew clean build dockerPush sonar -i'  }
+        }
+
         junit '**/build/test-results/test/*.xml'
         checkstyle(pattern: '**/build/reports/checkstyle/*.xml')
         script {
@@ -40,4 +42,4 @@ pipeline {
     }
   }
 }
-}
+
