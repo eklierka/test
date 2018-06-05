@@ -52,10 +52,14 @@ services:
     image: registry:2
     ports:
       - "5000:5000"
+    volumes:
+      - docker-registry-data:/var/lib/registry
     restart: always
 
 volumes:
   jenkins-data:
     external: true
   sonarqubedb-pgdata:
+    external: true
+  docker-registry-data:
     external: true

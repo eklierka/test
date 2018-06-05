@@ -2,6 +2,7 @@
 
 docker volume create jenkins-data
 docker volume create sonarqubedb-pgdata
+docker volume create docker-registry-data
 docker-compose up -d
 
 http://localhost:9000
@@ -45,6 +46,12 @@ http://localhost:8080/configure
 Name: SonarQube Server
 Server URL: http://sonarqube:9000
 Server authentication token: ***
+
+http://localhost:8080/credentials/store/system/domain/_/newCredentials
+Kind: Username with password
+ID: dockerregistry
+Username: admin
+Password: admin
 
 http://localhost:8080/blue
 
