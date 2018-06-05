@@ -20,7 +20,7 @@ Copy generated token
 
 http://localhost:9000/admin/settings?category=webhooks
 
-URL: "http://localhost:8080/sonarqube-webhook/"
+URL: "http://jenkins:8080/sonarqube-webhook/"
 
 http://localhost:8080
 
